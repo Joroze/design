@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.97ab9650.chunk.css",
+    "main.js": "/static/js/main.b2b36d23.chunk.js",
+    "main.js.map": "/static/js/main.b2b36d23.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.6819acfb.js",
+    "runtime-main.js.map": "/static/js/runtime-main.6819acfb.js.map",
+    "static/js/2.1f0719e9.chunk.js": "/static/js/2.1f0719e9.chunk.js",
+    "static/js/2.1f0719e9.chunk.js.map": "/static/js/2.1f0719e9.chunk.js.map",
+    "static/js/3.b730088a.chunk.js": "/static/js/3.b730088a.chunk.js",
+    "static/js/3.b730088a.chunk.js.map": "/static/js/3.b730088a.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.97ab9650.chunk.css.map": "/static/css/main.97ab9650.chunk.css.map",
+    "static/js/2.1f0719e9.chunk.js.LICENSE.txt": "/static/js/2.1f0719e9.chunk.js.LICENSE.txt",
+    "static/media/burger.9a904591.jpg": "/static/media/burger.9a904591.jpg",
+    "static/media/earth.76f1dd72.jpg": "/static/media/earth.76f1dd72.jpg",
+    "static/media/patrick.bb5f3b8d.jpg": "/static/media/patrick.bb5f3b8d.jpg",
+    "static/media/playdoh.62e2629f.jpg": "/static/media/playdoh.62e2629f.jpg",
+    "static/media/snowman.53fbd791.jpg": "/static/media/snowman.53fbd791.jpg",
+    "static/media/sun.b4d6b4a6.jpg": "/static/media/sun.b4d6b4a6.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6819acfb.js",
+    "static/js/2.1f0719e9.chunk.js",
+    "static/css/main.97ab9650.chunk.css",
+    "static/js/main.b2b36d23.chunk.js"
+  ]
+}
