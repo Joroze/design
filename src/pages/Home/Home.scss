@@ -58,6 +58,7 @@
                 display: flex;
                 justify-content: center;
                 flex-wrap: wrap;
+                flex-shrink: 0;
 
                 .component-product-item {
                     flex: 0 0 20%;
