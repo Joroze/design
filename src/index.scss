@@ -20,3 +20,9 @@ code {
         display: none;
     }
 }
+/* Large devices (laptops/desktops, 1024px and down) */
+@media only screen and (min-width: 1024px) {
+  .mobile-visible {
+      display: none;
+  }
+}
