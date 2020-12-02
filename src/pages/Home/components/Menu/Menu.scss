@@ -1,0 +1,41 @@
+
+.component-menu {
+    white-space: nowrap;
+    margin-bottom: 35px;
+
+   ul {
+       margin: 0;
+       padding: 0;
+       list-style-type: none;
+
+       li {
+           display: flex;
+           align-items: center;
+           margin-bottom: 5px;
+           font-size: 11px;
+           text-transform: uppercase;
+
+           h2 {
+               font-size: 11px;
+               font-weight: 700;
+               margin: 0;
+           }
+
+           a {
+               &:hover {
+                   text-decoration: underline;
+               }
+
+                text-decoration: none;
+                color: black;
+           }
+
+           div.square {
+                height: 5px;
+                width: 5px;
+                background-color: #555;
+                margin-right: 4px;
+           }
+       }
+   }
+}
