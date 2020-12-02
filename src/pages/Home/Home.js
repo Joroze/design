@@ -54,6 +54,7 @@ function Home() {
                             'Blue',
                             'Yellow',
                             'Green',
+                            'Purple',
                             'Orange',
                             'Brown',
                             'Pink',
