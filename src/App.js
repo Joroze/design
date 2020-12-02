@@ -38,7 +38,10 @@ function App() {
           </nav>
         </div>
       </header>
-      <Home />
+
+      <div className='page-container'>
+        <Home />
+      </div>
     </div>
   );
 }

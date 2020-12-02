@@ -36,7 +36,7 @@ function Home() {
                         'Food'
                     ]} /> */}
 
-                <div>
+                <div className='left-pane desktop-visible'>
                     <Menu
                         headerItem={categoriesMenuHeader}
                         items={[
@@ -80,16 +80,18 @@ function Home() {
                     <p>Mauris a fringilla arcu. Maecenas magna mauris, maximus non nisl vel, posuere ornare lacus. Duis a massa vulputate, feugiat orci id, lacinia nulla. Mauris at urna nunc. Donec nec dictum nulla. Nam aliquet, quam eget efficitur vestibulum, nisl ex lacinia diam, nec semper nisi metus vel orci. Etiam et augue purus. Fusce consectetur suscipit tempor. Integer vel arcu egestas, finibus leo eu, scelerisque lacus. Praesent convallis tempus est non ornare. Cras eu scelerisque nisi. Morbi vel dictum elit. Duis efficitur, ipsum vitae molestie interdum, odio neque condimentum sapien, ut elementum tellus nisi id nulla. Nam vel purus odio. Donec varius tristique libero, vel ullamcorper sem. Ut nisi tellus, aliquam nec congue ac, rhoncus id velit. Maecenas cursus a nisi ut sollicitudin. Nulla lacinia nunc commodo magna efficitur, et viverra neque vestibulum. Integer efficitur ornare elit eget pharetra. Morbi vehicula mattis pellentesque. Phasellus tellus nunc, fringilla vitae nisl a, euismod vehicula dolor. Quisque non tempus orci, vestibulum vehicula neque.</p>
                 </div>
 
-                <Menu
-                    headerItem={sortMenuHeader}
-                    items={[
-                        'Latest arrivals',
-                        'Trending',
-                        'Price: Low to high',
-                        'Price: High to low',
-                        'Sale: Low to high',
-                        'Sale: High to low'
-                    ]} />
+                <div className='right-pane desktop-visible'>
+                    <Menu
+                        headerItem={sortMenuHeader}
+                        items={[
+                            'Latest arrivals',
+                            'Trending',
+                            'Price: Low to high',
+                            'Price: High to low',
+                            'Sale: Low to high',
+                            'Sale: High to low'
+                        ]} />
+                </div>
             </div>
         </div>
     );

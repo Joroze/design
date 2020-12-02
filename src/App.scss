@@ -3,6 +3,26 @@
     display: flex;
     flex-direction: column;
 
+    /* Large devices (laptops/desktops, 1024px and down) */
+    @media only screen and (max-width: 1024px) {
+        .app-nav {
+            
+            > div {
+                padding-top: 10px;
+                flex-direction: column;
+
+                .title {
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .page-container {
+            padding-top: 90px !important;
+        }
+        
+    }
+
     .app-nav {
         display: flex;
         position: fixed;
@@ -46,5 +66,9 @@
                 }
             }
         }
+    }
+
+    .page-container {
+        padding-top: 70px;
     }
 }
