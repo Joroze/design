@@ -1,5 +1,45 @@
 
 .component-app {
     display: flex;
-    height: 100vh;
+    flex-direction: column;
+
+    .app-nav {
+        display: flex;
+        position: fixed;
+        width: 100%;
+        background-color: white;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 25px;
+        padding-right: 25px;
+        text-transform: uppercase;
+
+        .title {
+            font-weight: 600;
+        }
+
+        ul {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+
+            li {
+                font-size: 11px;
+
+                &:not(:last-child){
+                    margin-right: 30px;
+                }
+
+                a {
+                    &:hover {
+                        text-decoration: underline;
+                    }
+     
+                     text-decoration: none;
+                     color: black;
+                }
+            }
+        }
+    }
 }
