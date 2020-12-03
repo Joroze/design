@@ -189,9 +189,11 @@ function Home() {
                         })}
                     </div>
 
+                    <p style={{ textAlign: 'center', fontSize: '9px' }}>~</p>
                     <p>Maecenas dignissim hendrerit arcu, viverra gravida arcu sodales vitae. In hac habitasse platea dictumst. Ut rutrum iaculis tortor vehicula dapibus. Fusce volutpat tortor ac ipsum lobortis, a pharetra lorem laoreet.</p>
                     <p>Curabitur eu eros interdum, vestibulum massa ac, mattis dui. Mauris quis tincidunt ex. Cras vehicula risus in dui porttitor, eget pharetra magna pharetra. Nulla facilisi. Nullam tincidunt ligula arcu, at ornare mauris semper et. Donec neque purus, dapibus nec nisi in, facilisis posuere metus. Maecenas vestibulum, dui et lacinia convallis, nulla sem pharetra enim, id luctus nisl ipsum a ligula. Nunc neque velit, dignissim non efficitur eu, eleifend sed nibh. Pellentesque magna elit, lobortis sit amet condimentum a, bibendum vitae mauris.</p>
                     <p>Vivamus sed nisl lorem. Donec vulputate tellus at nisi ullamcorper, vel maximus enim porta. Maecenas mattis ultricies velit sed eleifend. Quisque nec sollicitudin lorem. Nam nec felis justo. Maecenas eu diam nec libero elementum dictum.</p>
+                    <p style={{ textAlign: 'center' }}>Collection</p>
                 </div>
 
                 <div className='right-pane desktop-visible'>
