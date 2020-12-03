@@ -11,8 +11,10 @@ import playdohImg from 'assets/images/playdoh.jpg'
 import earthImg from 'assets/images/earth.jpg'
 import sunImg from 'assets/images/sun.jpg'
 import snowmanImg from 'assets/images/snowman.jpg'
+import snowman2Img from 'assets/images/snowman2.jpg'
 import patrickImg from 'assets/images/patrick.jpg'
 import burgerImg from 'assets/images/burger.jpg'
+import burger2Img from 'assets/images/burger2.jpg'
 
 const categoryMenuHeader = {
     text: 'All categories',
@@ -56,8 +58,8 @@ const productList = window.productList = [
         id: '1',
         name: 'Burger',
         description: '',
-        price: '',
-        imgSrc: burgerImg,
+        price: '5',
+        imgSrc: [burgerImg, burger2Img],
         category: ['food'],
         color: ['orange']
     },
@@ -66,7 +68,7 @@ const productList = window.productList = [
         name: 'Sun',
         description: '',
         price: '',
-        imgSrc: sunImg,
+        imgSrc: [sunImg],
         category: ['space'],
         color: ['red', 'orange']
     },
@@ -74,8 +76,8 @@ const productList = window.productList = [
         id: '3',
         name: 'Earth',
         description: '',
-        price: '',
-        imgSrc: earthImg,
+        price: '5',
+        imgSrc: [earthImg],
         category: ['space'],
         color: ['blue', 'green', 'white']
     },
@@ -84,7 +86,7 @@ const productList = window.productList = [
         name: 'Snowman',
         description: '',
         price: '',
-        imgSrc: snowmanImg,
+        imgSrc: [snowmanImg, snowman2Img],
         category: [],
         color: ['white']
     },
@@ -93,7 +95,7 @@ const productList = window.productList = [
         name: 'Patrick',
         description: 'The best character in Bikini Bottom',
         price: '5',
-        imgSrc: patrickImg,
+        imgSrc: [patrickImg],
         category: ['tv'],
         color: ['pink', 'green', 'purple', 'red']
     },
@@ -102,7 +104,7 @@ const productList = window.productList = [
         name: 'Example',
         description: '',
         price: '',
-        imgSrc: playdohImg,
+        imgSrc: [playdohImg],
         category: [],
         color: []
     },

@@ -27,10 +27,17 @@ function Product(props) {
                         description={product.description}
                         price={product.price}
                         imgSrc={product.imgSrc}
+                        detailedImageView
                     />
                 </div>
 
-                <div className='product-disclosure'>SCULPTURE was founded on the philosophy of my roommate (Christopher Rizzo) matching the cost of a purchase towards myself in need, but has evolved to go deeper into the community. The more SCULPTURE items we sell, the more my roommate matches his donation. As we grow, our giving and community efforts will continue to grow right alongside us. One purchased = one donation matched.</div>
+                <p style={{ textAlign: 'center', fontSize: '9px', marginTop: '15px' }}>~</p>
+
+                <div className='product-disclosure'>
+                    <div><strong>SCULPTURE</strong> was founded on the philosophy of my roommate (Christopher Rizzo) matching the cost of a purchase towards myself in need, but has evolved to go deeper into the community. The more items we sell, the more my roommate matches his donation. As we grow, our giving and community efforts will continue to grow right alongside us. One purchased = one donation matched</div>
+                    <div>Disclosure: Donation per purchase is matched up to $100.</div>
+                </div>
+
             </div>
         )
         : <Redirect to='/' />
