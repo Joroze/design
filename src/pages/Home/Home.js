@@ -2,6 +2,7 @@
 import './Home.scss';
 
 import { useState, useEffect } from 'react'
+import { useHistory } from "react-router-dom";
 
 import Menu from './components/Menu/Menu';
 import ProductItem from './components/ProductItem/ProductItem';
@@ -50,8 +51,9 @@ const sortMenuHeader = {
     clickable: false
 }
 
-const productList = [
+const productList = window.productList = [
     {
+        id: '1',
         name: 'Burger',
         description: '',
         price: '',
@@ -60,6 +62,7 @@ const productList = [
         color: ['orange']
     },
     {
+        id: '2',
         name: 'Sun',
         description: '',
         price: '',
@@ -68,6 +71,7 @@ const productList = [
         color: ['red', 'orange']
     },
     {
+        id: '3',
         name: 'Earth',
         description: '',
         price: '',
@@ -76,6 +80,7 @@ const productList = [
         color: ['blue', 'green', 'white']
     },
     {
+        id: '4',
         name: 'Snowman',
         description: '',
         price: '',
@@ -84,6 +89,7 @@ const productList = [
         color: ['white']
     },
     {
+        id: '5',
         name: 'Patrick',
         description: 'The best character in Bikini Bottom',
         price: '5',
@@ -92,6 +98,7 @@ const productList = [
         color: ['pink', 'green', 'purple', 'red']
     },
     {
+        id: '6',
         name: 'Example',
         description: '',
         price: '',
@@ -106,6 +113,7 @@ function Home() {
     const [selectedColorFilters, setSelectedColorFilters] = useState({});
     const [selectedCategoryFilters, setSelectedCategoryFilters] = useState({});
     // const [sortBy, setSortBy] = useState();
+    const history = useHistory();
 
     useEffect(function () {
         let filteredProducts = productList;
@@ -176,10 +184,15 @@ function Home() {
 
                 <div className='inner-container'>
                     <div className='product-list'>
-                        {products.map(function (product, index) {
+                        {products.map(function (product) {
+                            function handleOnClick() {
+                                history.push(`/product/${product.id}`);
+                            }
+
                             return (
                                 <ProductItem
-                                    key={index}
+                                    key={product.id}
+                                    onClick={handleOnClick}
                                     name={product.name}
                                     description={product.description}
                                     price={product.price}
@@ -190,9 +203,6 @@ function Home() {
                     </div>
 
                     <p style={{ textAlign: 'center', fontSize: '9px' }}>~</p>
-                    <p>Maecenas dignissim hendrerit arcu, viverra gravida arcu sodales vitae. In hac habitasse platea dictumst. Ut rutrum iaculis tortor vehicula dapibus. Fusce volutpat tortor ac ipsum lobortis, a pharetra lorem laoreet.</p>
-                    <p>Curabitur eu eros interdum, vestibulum massa ac, mattis dui. Mauris quis tincidunt ex. Cras vehicula risus in dui porttitor, eget pharetra magna pharetra. Nulla facilisi. Nullam tincidunt ligula arcu, at ornare mauris semper et. Donec neque purus, dapibus nec nisi in, facilisis posuere metus. Maecenas vestibulum, dui et lacinia convallis, nulla sem pharetra enim, id luctus nisl ipsum a ligula. Nunc neque velit, dignissim non efficitur eu, eleifend sed nibh. Pellentesque magna elit, lobortis sit amet condimentum a, bibendum vitae mauris.</p>
-                    <p>Vivamus sed nisl lorem. Donec vulputate tellus at nisi ullamcorper, vel maximus enim porta. Maecenas mattis ultricies velit sed eleifend. Quisque nec sollicitudin lorem. Nam nec felis justo. Maecenas eu diam nec libero elementum dictum.</p>
                     <p style={{ textAlign: 'center' }}>Collection</p>
                 </div>
 

@@ -1,15 +1,19 @@
 import './App.scss';
 
 import { useState } from 'react'
+import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useMediaQuery } from 'react-responsive'
 import { faBars, faSearch, faUser, faShoppingBag } from '@fortawesome/free-solid-svg-icons'
 
 import Home from 'pages/Home/Home';
+import Product from 'pages/Product/Product';
+import Button from 'components/Button/Button';
 
 function App() {
   const [open, setOpen] = useState(false);
+  const history = useHistory();
 
   useMediaQuery({
     query: '(min-width: 1024px)'
@@ -31,6 +35,7 @@ function App() {
             <li>Account</li>
             <li>Contact</li>
             <li>Wishlist</li>
+            <li>FAQ</li>
           </ul>
           <div onClick={handleToggleNavDropdownMenu} className='close-menu'>Close</div>
         </div>
@@ -59,7 +64,9 @@ function App() {
           </nav>
 
           <h2 className='title'>
-            Sculpture
+            <Button borderless onClick={() => history.push('/')}>
+              Sculpture
+            </Button>
           </h2>
 
           <nav>
@@ -85,7 +92,19 @@ function App() {
       </header>
 
       <div className='page-container'>
-        <Home />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route
+            path="/product/:id"
+          >
+            <Product />
+          </Route>
+          <Route>
+            <Redirect to="/" />
+          </Route>
+        </Switch>
       </div>
     </div >
   );

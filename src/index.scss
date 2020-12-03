@@ -10,6 +10,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+    /*pass window height (w/o scroll bars) down to react app, note can't use vh because that
+    includes scroll bars and mobile browser footer, etc so doesn't give viewable area*/
+    html,
+    body {
+      height: 100%;
+    }
+
+    #root {
+      min-height: 100%;
+    }
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
