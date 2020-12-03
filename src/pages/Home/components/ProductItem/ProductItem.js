@@ -7,9 +7,9 @@ function ProductItem({ name, description, price, imgSrc, category }) {
     return (
         <div className='component-product-item'>
             <img src={imgSrc} alt="product-item-text" />
-            <p>{name}</p>
-            <p className='description'>{description}</p>
-            <span>${price ? price : ' N/A'}</span>
+            <p>{name || '???'}</p>
+            {description && <p className='description'>{description}</p>}
+            <span>{price ? `$${price}` : ' N/A'}</span>
         </div>
     );
 }

@@ -85,8 +85,8 @@ const productList = [
     },
     {
         name: 'Patrick',
-        description: 'The best character in Bikini Bottom.',
-        price: '',
+        description: 'The best character in Bikini Bottom',
+        price: '5',
         imgSrc: patrickImg,
         category: ['tv'],
         color: ['pink', 'green', 'purple', 'red']
