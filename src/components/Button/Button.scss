@@ -1,0 +1,19 @@
+
+.component-button {
+    &.borderless {
+        &:hover {
+            text-decoration: underline;
+        }
+
+        background: none !important;
+        border: none;
+        padding: 0 !important;
+        cursor: pointer;
+        text-transform: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        font-family: inherit;
+
+        outline: none;
+    }
+}

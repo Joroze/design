@@ -6,6 +6,8 @@
     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
 
     img {
         width: inherit;
@@ -15,5 +17,13 @@
     p {
         width: inherit;
         font-size: 11px;
+
+        &.description {
+            font-size: 9px;
+        }
+    }
+
+    span {
+        font-size: 9px;
     }
 }

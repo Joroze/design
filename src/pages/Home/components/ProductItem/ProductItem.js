@@ -2,21 +2,24 @@ import './ProductItem.scss';
 
 import PropTypes from 'prop-types';
 
-function ProductItem({ img, title, description }) {
+function ProductItem({ name, description, price, imgSrc, category }) {
 
     return (
         <div className='component-product-item'>
-            <img src={img} alt="product-item-text" />
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <p>Cras nec mi posuere, interdum massa a, laoreet risus. Aenean sollicitudin blandit quam, ac egestas est suscipit at. Vestibulum ante ipsum primis ino.</p>
+            <img src={imgSrc} alt="product-item-text" />
+            <p>{name}</p>
+            <p className='description'>{description}</p>
+            <span>${price ? price : ' N/A'}</span>
         </div>
     );
 }
 
 ProductItem.propTypes = {
-    title: PropTypes.string,
+    name: PropTypes.string,
     description: PropTypes.string,
-    img: PropTypes.string
+    price: PropTypes.string,
+    imgSrc: PropTypes.string,
+    category: PropTypes.string
 };
 
 export default ProductItem;

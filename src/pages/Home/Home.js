@@ -1,6 +1,8 @@
 
 import './Home.scss';
 
+import { useState, useEffect } from 'react'
+
 import Menu from './components/Menu/Menu';
 import ProductItem from './components/ProductItem/ProductItem';
 
@@ -11,78 +13,190 @@ import snowmanImg from 'assets/images/snowman.jpg'
 import patrickImg from 'assets/images/patrick.jpg'
 import burgerImg from 'assets/images/burger.jpg'
 
-const categoriesMenuHeader = {
+const categoryMenuHeader = {
     text: 'All categories',
-    link: '#'
+    clickable: true
 }
+
+const categoryFilters = [
+    'Accessories',
+    'Animals',
+    'Food',
+    'TV',
+    'Space'
+].map((text) => text.toLowerCase());
 
 const colorMenuHeader = {
     text: 'All colors',
-    link: '#'
+    clickable: true
 }
+
+const colorFilters = [
+    'Red',
+    'Blue',
+    'Yellow',
+    'Green',
+    'Purple',
+    'Orange',
+    'Brown',
+    'Pink',
+    'Black',
+    'White',
+    'Grey'
+].map((text) => text.toLowerCase());
 
 const sortMenuHeader = {
     text: 'Sort',
-    link: undefined
+    clickable: false
 }
 
+const productList = [
+    {
+        name: 'Burger',
+        description: '',
+        price: '',
+        imgSrc: burgerImg,
+        category: ['food'],
+        color: ['orange']
+    },
+    {
+        name: 'Sun',
+        description: '',
+        price: '',
+        imgSrc: sunImg,
+        category: ['space'],
+        color: ['red', 'orange']
+    },
+    {
+        name: 'Earth',
+        description: '',
+        price: '',
+        imgSrc: earthImg,
+        category: ['space'],
+        color: ['blue', 'green', 'white']
+    },
+    {
+        name: 'Snowman',
+        description: '',
+        price: '',
+        imgSrc: snowmanImg,
+        category: [],
+        color: ['white']
+    },
+    {
+        name: 'Patrick',
+        description: 'The best character in Bikini Bottom.',
+        price: '',
+        imgSrc: patrickImg,
+        category: ['tv'],
+        color: ['pink', 'green', 'purple', 'red']
+    },
+    {
+        name: 'Example',
+        description: '',
+        price: '',
+        imgSrc: playdohImg,
+        category: [],
+        color: []
+    },
+]
+
 function Home() {
+    const [products, setProducts] = useState(productList);
+    const [selectedColorFilters, setSelectedColorFilters] = useState({});
+    const [selectedCategoryFilters, setSelectedCategoryFilters] = useState({});
+    // const [sortBy, setSortBy] = useState();
+
+    useEffect(function () {
+        let filteredProducts = productList;
+
+        if (Object.keys(selectedColorFilters).length) {
+            filteredProducts = productList.filter((product) => product.color.some((color) => color.toLowerCase() in selectedColorFilters))
+        }
+
+        if (Object.keys(selectedCategoryFilters).length) {
+            filteredProducts = filteredProducts.filter((product) => product.category.some((category) => category.toLowerCase() in selectedCategoryFilters))
+        }
+
+        setProducts(filteredProducts);
+    }, [selectedColorFilters, selectedCategoryFilters])
+
+    function handleFilterByCategory(e, filterValue) {
+        if (filterValue.toLowerCase() === 'all categories') {
+            return setSelectedCategoryFilters({})
+        }
+
+        if (filterValue in selectedCategoryFilters) {
+            const { [filterValue]: deletedKey, ...rest } = selectedCategoryFilters;
+
+            setSelectedCategoryFilters(rest)
+        } else {
+            setSelectedCategoryFilters({ [filterValue]: true })
+        }
+    }
+
+    function handleFilterByColor(e, filterValue) {
+        if (filterValue.toLowerCase() === 'all colors') {
+            return setSelectedColorFilters({})
+        }
+
+        if (filterValue in selectedColorFilters) {
+            const { [filterValue]: deletedKey, ...rest } = selectedColorFilters;
+
+            setSelectedColorFilters(rest)
+        } else {
+            setSelectedColorFilters({ ...selectedColorFilters, [filterValue]: true })
+        }
+    }
+
+    function handleSort(e, value) {
+        console.log(value);
+    }
+
     return (
         <div className="component-home">
             <div className='container'>
-                {/* <Menu
-                    name='Categories'
-                    items={[
-                        'Food'
-                    ]} /> */}
-
                 <div className='left-pane desktop-visible'>
                     <Menu
-                        headerItem={categoriesMenuHeader}
-                        items={[
-                            'Accessories',
-                            'Animals',
-                            'Food',
-                            'TV'
-                        ]} />
+                        onClick={handleFilterByCategory}
+                        headerItem={categoryMenuHeader}
+                        items={categoryFilters}
+                        selected={selectedCategoryFilters}
+                    />
 
                     <Menu
+                        onClick={handleFilterByColor}
                         headerItem={colorMenuHeader}
+                        items={colorFilters}
+                        selected={selectedColorFilters}
+                        multiselect
                         colored
-                        items={[
-                            'Red',
-                            'Blue',
-                            'Yellow',
-                            'Green',
-                            'Purple',
-                            'Orange',
-                            'Brown',
-                            'Pink',
-                            'Black',
-                            'White',
-                            'Grey',
-                            'Misc.'
-                        ]} />
+                    />
                 </div>
 
                 <div className='inner-container'>
                     <div className='product-list'>
-                        <ProductItem img={burgerImg} />
-                        <ProductItem img={sunImg} />
-                        <ProductItem img={earthImg} />
-                        <ProductItem img={snowmanImg} />
-                        <ProductItem img={patrickImg} />
-                        <ProductItem img={playdohImg} />
-
+                        {products.map(function (product, index) {
+                            return (
+                                <ProductItem
+                                    key={index}
+                                    name={product.name}
+                                    description={product.description}
+                                    price={product.price}
+                                    imgSrc={product.imgSrc}
+                                />
+                            )
+                        })}
                     </div>
 
-                    <p>Maecenas dignissim hendrerit arcu, viverra gravida arcu sodales vitae. In hac habitasse platea dictumst. Ut rutrum iaculis tortor vehicula dapibus. Fusce volutpat tortor ac ipsum lobortis, a pharetra lorem laoreet. Curabitur eu eros interdum, vestibulum massa ac, mattis dui. Mauris quis tincidunt ex. Cras vehicula risus in dui porttitor, eget pharetra magna pharetra. Nulla facilisi. Nullam tincidunt ligula arcu, at ornare mauris semper et. Donec neque purus, dapibus nec nisi in, facilisis posuere metus. Maecenas vestibulum, dui et lacinia convallis, nulla sem pharetra enim, id luctus nisl ipsum a ligula. Nunc neque velit, dignissim non efficitur eu, eleifend sed nibh. Pellentesque magna elit, lobortis sit amet condimentum a, bibendum vitae mauris.</p>
-                    <p>Vivamus sed nisl lorem. Donec vulputate tellus at nisi ullamcorper, vel maximus enim porta. Maecenas mattis ultricies velit sed eleifend. Quisque nec sollicitudin lorem. Nam nec felis justo. Maecenas eu diam nec libero elementum dictum. Curabitur fringilla, erat et suscipit blandit, lacus ex tristique lorem, id elementum augue turpis ac orci. Pellentesque rhoncus dolor eget felis suscipit sollicitudin. Sed placerat purus orci, a pellentesque neque commodo vel.</p>
-                    <p>Mauris a fringilla arcu. Maecenas magna mauris, maximus non nisl vel, posuere ornare lacus. Duis a massa vulputate, feugiat orci id, lacinia nulla. Mauris at urna nunc. Donec nec dictum nulla. Nam aliquet, quam eget efficitur vestibulum, nisl ex lacinia diam, nec semper nisi metus vel orci. Etiam et augue purus. Fusce consectetur suscipit tempor. Integer vel arcu egestas, finibus leo eu, scelerisque lacus. Praesent convallis tempus est non ornare. Cras eu scelerisque nisi. Morbi vel dictum elit. Duis efficitur, ipsum vitae molestie interdum, odio neque condimentum sapien, ut elementum tellus nisi id nulla. Nam vel purus odio. Donec varius tristique libero, vel ullamcorper sem. Ut nisi tellus, aliquam nec congue ac, rhoncus id velit. Maecenas cursus a nisi ut sollicitudin. Nulla lacinia nunc commodo magna efficitur, et viverra neque vestibulum. Integer efficitur ornare elit eget pharetra. Morbi vehicula mattis pellentesque. Phasellus tellus nunc, fringilla vitae nisl a, euismod vehicula dolor. Quisque non tempus orci, vestibulum vehicula neque.</p>
+                    <p>Maecenas dignissim hendrerit arcu, viverra gravida arcu sodales vitae. In hac habitasse platea dictumst. Ut rutrum iaculis tortor vehicula dapibus. Fusce volutpat tortor ac ipsum lobortis, a pharetra lorem laoreet.</p>
+                    <p>Curabitur eu eros interdum, vestibulum massa ac, mattis dui. Mauris quis tincidunt ex. Cras vehicula risus in dui porttitor, eget pharetra magna pharetra. Nulla facilisi. Nullam tincidunt ligula arcu, at ornare mauris semper et. Donec neque purus, dapibus nec nisi in, facilisis posuere metus. Maecenas vestibulum, dui et lacinia convallis, nulla sem pharetra enim, id luctus nisl ipsum a ligula. Nunc neque velit, dignissim non efficitur eu, eleifend sed nibh. Pellentesque magna elit, lobortis sit amet condimentum a, bibendum vitae mauris.</p>
+                    <p>Vivamus sed nisl lorem. Donec vulputate tellus at nisi ullamcorper, vel maximus enim porta. Maecenas mattis ultricies velit sed eleifend. Quisque nec sollicitudin lorem. Nam nec felis justo. Maecenas eu diam nec libero elementum dictum.</p>
                 </div>
 
                 <div className='right-pane desktop-visible'>
                     <Menu
+                        onClick={handleSort}
                         headerItem={sortMenuHeader}
                         items={[
                             'Latest arrivals',
@@ -91,7 +205,8 @@ function Home() {
                             'Price: High to low',
                             'Sale: Low to high',
                             'Sale: High to low'
-                        ]} />
+                        ]}
+                    />
                 </div>
             </div>
         </div>

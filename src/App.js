@@ -1,6 +1,6 @@
 import './App.scss';
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useMediaQuery } from 'react-responsive'
@@ -11,7 +11,7 @@ import Home from 'pages/Home/Home';
 function App() {
   const [open, setOpen] = useState(false);
 
-  const isDesktop = useMediaQuery({
+  useMediaQuery({
     query: '(min-width: 1024px)'
   }, undefined, handleMediaQueryChange)
 

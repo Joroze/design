@@ -15,19 +15,14 @@
            font-size: 11px;
            text-transform: uppercase;
 
+           &.selected {
+               font-weight: 600;
+           }
+
            h2 {
                font-size: 11px;
                font-weight: 700;
                margin: 0;
-           }
-
-           a {
-               &:hover {
-                   text-decoration: underline;
-               }
-
-                text-decoration: none;
-                color: black;
            }
 
            div.square {
