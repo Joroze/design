@@ -1,20 +1,13 @@
 
 import './Home.scss';
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useHistory } from "react-router-dom";
 
 import Menu from './components/Menu/Menu';
 import ProductItem from './components/ProductItem/ProductItem';
 
-import playdohImg from 'assets/images/playdoh.jpg'
-import earthImg from 'assets/images/earth.jpg'
-import sunImg from 'assets/images/sun.jpg'
-import snowmanImg from 'assets/images/snowman.jpg'
-import snowman2Img from 'assets/images/snowman2.jpg'
-import patrickImg from 'assets/images/patrick.jpg'
-import burgerImg from 'assets/images/burger.jpg'
-import burger2Img from 'assets/images/burger2.jpg'
+import { ProductContext } from 'App'
 
 const categoryMenuHeader = {
     text: 'All categories',
@@ -53,75 +46,20 @@ const sortMenuHeader = {
     clickable: false
 }
 
-const productList = window.productList = [
-    {
-        id: '1',
-        name: 'Burger',
-        description: '',
-        price: '5',
-        imgSrc: [burgerImg, burger2Img],
-        category: ['food'],
-        color: ['orange']
-    },
-    {
-        id: '2',
-        name: 'Sun',
-        description: '',
-        price: '',
-        imgSrc: [sunImg],
-        category: ['space'],
-        color: ['red', 'orange']
-    },
-    {
-        id: '3',
-        name: 'Earth',
-        description: '',
-        price: '5',
-        imgSrc: [earthImg],
-        category: ['space'],
-        color: ['blue', 'green', 'white']
-    },
-    {
-        id: '4',
-        name: 'Snowman',
-        description: '',
-        price: '',
-        imgSrc: [snowmanImg, snowman2Img],
-        category: [],
-        color: ['white']
-    },
-    {
-        id: '5',
-        name: 'Patrick',
-        description: 'The best character in Bikini Bottom',
-        price: '5',
-        imgSrc: [patrickImg],
-        category: ['tv'],
-        color: ['pink', 'green', 'purple', 'red']
-    },
-    {
-        id: '6',
-        name: 'Example',
-        description: '',
-        price: '',
-        imgSrc: [playdohImg],
-        category: [],
-        color: []
-    },
-]
-
 function Home() {
-    const [products, setProducts] = useState(productList);
+    const { availableItems } = useContext(ProductContext);
+
+    const [products, setProducts] = useState(availableItems);
     const [selectedColorFilters, setSelectedColorFilters] = useState({});
     const [selectedCategoryFilters, setSelectedCategoryFilters] = useState({});
     // const [sortBy, setSortBy] = useState();
     const history = useHistory();
 
     useEffect(function () {
-        let filteredProducts = productList;
+        let filteredProducts = availableItems;
 
         if (Object.keys(selectedColorFilters).length) {
-            filteredProducts = productList.filter((product) => product.color.some((color) => color.toLowerCase() in selectedColorFilters))
+            filteredProducts = availableItems.filter((product) => product.color.some((color) => color.toLowerCase() in selectedColorFilters))
         }
 
         if (Object.keys(selectedCategoryFilters).length) {
@@ -129,7 +67,7 @@ function Home() {
         }
 
         setProducts(filteredProducts);
-    }, [selectedColorFilters, selectedCategoryFilters])
+    }, [selectedColorFilters, selectedCategoryFilters, availableItems])
 
     function handleFilterByCategory(e, filterValue) {
         if (filterValue.toLowerCase() === 'all categories') {

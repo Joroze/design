@@ -1,5 +1,4 @@
 .component-product-item {
-    width: 150px;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
@@ -14,8 +13,8 @@
     }
 
     img {
-        width: inherit;
-        height: 120px;
+        width: 150px;
+        height: 135px;
     }
 
     p {

@@ -1,6 +1,9 @@
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
+
 import './ProductItem.scss';
 
 import PropTypes from 'prop-types';
+import InnerImageZoom from 'react-inner-image-zoom';
 
 function ProductItem({ name, description, price, imgSrc, detailedImageView, category, onClick }) {
     return (
@@ -8,7 +11,12 @@ function ProductItem({ name, description, price, imgSrc, detailedImageView, cate
             {detailedImageView ?
                 imgSrc.map(function (img, index) {
                     return (
-                        <img key={index} src={img} alt={name} />
+                        <InnerImageZoom
+                            key={index}
+                            src={img}
+                            alt={name}
+                            fullscreenOnMobile
+                        />
                     )
                 })
                 : <img src={imgSrc[0]} alt={name} />
