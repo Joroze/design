@@ -1,11 +1,24 @@
 
 .component-button {
+    &:disabled {
+        cursor: not-allowed;
+    }
+
     &.borderless {
+        &:disabled {
+            background-color: #eaeaea;
+            cursor: not-allowed;
+        }
+
+        &:disabled:hover {
+            text-decoration: none;
+        }
+
         &:hover {
             text-decoration: underline;
         }
 
-        background: none !important;
+        background: none;
         border: none;
         padding: 0;
         cursor: pointer;

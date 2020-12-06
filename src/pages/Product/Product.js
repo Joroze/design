@@ -40,9 +40,10 @@ function Product(props) {
                     detailedImageView
                 />
 
-                <Button onClick={toggleOpen} borderless>
-                    {'Purchase'}
-                </Button>
+                {product.price
+                    ? <Button onClick={toggleOpen} borderless>Purchase</Button>
+                    : <Button disabled borderless>Unavailable</Button>
+                }
             </div>
 
             <p style={{ textAlign: 'center', fontSize: '9px', marginTop: '15px' }}>~</p>
