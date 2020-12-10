@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 import Button from 'components/Button/Button'
 
-function Modal({ title, onClose, content, children }) {
+function Modal({ title, onClose, content, children, className }) {
     return (
-        <div className='component-modal'>
+        <div className={`component-modal ${className ? className : ''}`} >
             <div className='modal'>
                 {onClose && <Button onClick={onClose} borderless content='x' />}
                 {title && <div className='modal-header'>{title}</div>}
@@ -16,7 +16,7 @@ function Modal({ title, onClose, content, children }) {
                     </div>
                 }
             </div>
-        </div>
+        </ div>
     );
 }
 

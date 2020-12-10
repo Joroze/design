@@ -3,15 +3,21 @@ import './index.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const stripePromise = loadStripe('pk_live_51HvPoYAHIVF9WsgGUMHqOLHoyrzbEvuWZjTMVkfzulb1ns9ze0P1KNm0MozGIA2XAGdlzisrx254BiV24GeDJy3d00PT0jmmWO');
+
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Elements stripe={stripePromise}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Elements>
   </React.StrictMode>,
   document.getElementById('root')
 );

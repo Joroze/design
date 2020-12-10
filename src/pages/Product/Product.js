@@ -6,6 +6,7 @@ import { Redirect, useHistory, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Button from 'components/Button/Button';
+import CheckoutForm from 'components/CheckoutForm/CheckoutForm';
 import Modal from 'components/Modal/Modal';
 import ProductItem from '../Home/components/ProductItem/ProductItem'
 
@@ -55,10 +56,17 @@ function Product(props) {
 
             {open &&
                 <Modal
+                    className='product-modal'
                     title="Confirm purchase"
                     onClose={toggleOpen}
                 >
-                    You know where to contact me.
+                    <div>You are purchasing the following Scultpure: <strong>{product.name}</strong></div>
+                    <img src={product.imgSrc[0]} alt={product.name} />
+                    <CheckoutForm
+                        productId={id}
+                        price={product.price}
+                        onFormInitializationError={toggleOpen}
+                    />
                 </Modal>
             }
 
