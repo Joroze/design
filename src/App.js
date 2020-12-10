@@ -23,55 +23,61 @@ import burger2Img from 'assets/images/burger2.jpg'
 const defaultProductContextValue = {
   availableItems: [
     {
-      id: '1',
+      id: 1,
       name: 'Burger',
       description: '',
-      price: '5',
+      price: 5,
+      available: true,
       imgSrc: [burgerImg, burger2Img],
       category: ['food'],
       color: ['orange']
     },
     {
-      id: '2',
+      id: 2,
       name: 'Sun',
       description: '',
-      price: '',
+      price: 10,
+      available: false,
       imgSrc: [sunImg],
       category: ['space'],
       color: ['red', 'orange']
     },
     {
-      id: '3',
+      id: 3,
       name: 'Earth',
       description: '',
-      price: '5',
+      price: 5,
+      available: true,
       imgSrc: [earthImg],
       category: ['space'],
       color: ['blue', 'green', 'white']
     },
     {
-      id: '4',
+      id: 4,
       name: 'Snowman',
       description: '',
-      price: '',
+      available: true,
+      price: 5,
       imgSrc: [snowmanImg, snowman2Img],
       category: [],
       color: ['white']
     },
     {
-      id: '5',
+      id: 5,
       name: 'Patrick',
       description: 'The best character in Bikini Bottom',
-      price: '5',
+      price: 5,
+      available: true,
       imgSrc: [patrickImg],
       category: ['tv'],
       color: ['pink', 'green', 'purple', 'red']
     },
     {
-      id: '6',
+      id: 7,
       name: 'Example',
       description: '',
-      price: '',
+      price: 0,
+      available: false,
       imgSrc: [playdohImg],
       category: [],
       color: []

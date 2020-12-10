@@ -33,9 +33,11 @@ ProductItem.defaultProps = {
 };
 
 ProductItem.propTypes = {
+    id: PropTypes.number,
+    available: PropTypes.bool,
     name: PropTypes.string,
     description: PropTypes.string,
-    price: PropTypes.string,
+    price: PropTypes.number,
     imgSrc: PropTypes.array,
     detailedImageView: PropTypes.bool,
     category: PropTypes.string

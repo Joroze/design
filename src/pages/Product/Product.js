@@ -20,7 +20,7 @@ function Product(props) {
 
     const toggleOpen = () => setOpen(!open);
 
-    const product = useMemo(() => availableItems.find((product) => product.id === id), [id, availableItems])
+    const product = useMemo(() => availableItems.find((product) => product.id === Number(id)), [id, availableItems])
 
     if (!product) {
         return <Redirect to='/' />
@@ -75,9 +75,11 @@ function Product(props) {
 }
 
 Product.propTypes = {
+    id: PropTypes.number,
     name: PropTypes.string,
     description: PropTypes.string,
-    price: PropTypes.string,
+    price: PropTypes.number,
+    available: PropTypes.bool,
     imgSrc: PropTypes.string,
     category: PropTypes.string
 };
