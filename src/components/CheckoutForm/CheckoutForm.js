@@ -20,7 +20,7 @@ export default function CheckoutForm({ productId, price, onFormInitializationErr
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("https://q0x61t1u80.execute-api.us-east-1.amazonaws.com/prod/create-payment-intent", {
+        fetch("https://api.joroze.com/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
