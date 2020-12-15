@@ -6,6 +6,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 
+import ProductContextProvider from 'components/ProductContextProvider'
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -15,7 +17,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Elements stripe={stripePromise}>
       <BrowserRouter>
-        <App />
+        <ProductContextProvider>
+          <App />
+        </ProductContextProvider>
       </BrowserRouter>
     </Elements>
   </React.StrictMode>,

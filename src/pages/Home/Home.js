@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import Menu from './components/Menu/Menu';
 import ProductItem from './components/ProductItem/ProductItem';
 
-import { ProductContext } from 'App'
+import { ProductContext } from 'components/ProductContextProvider'
 
 const categoryMenuHeader = {
     text: 'All categories',
@@ -47,27 +47,27 @@ const sortMenuHeader = {
 }
 
 function Home() {
-    const { availableItems } = useContext(ProductContext);
+    const { products } = useContext(ProductContext);
 
-    const [products, setProducts] = useState(availableItems);
+    const [filteredProducts, setFilteredProducts] = useState(products);
     const [selectedColorFilters, setSelectedColorFilters] = useState({});
     const [selectedCategoryFilters, setSelectedCategoryFilters] = useState({});
     // const [sortBy, setSortBy] = useState();
     const history = useHistory();
 
     useEffect(function () {
-        let filteredProducts = availableItems;
+        let filteredProducts = products;
 
         if (Object.keys(selectedColorFilters).length) {
-            filteredProducts = availableItems.filter((product) => product.color.some((color) => color.toLowerCase() in selectedColorFilters))
+            filteredProducts = products.filter((product) => product.color.some((color) => color.toLowerCase() in selectedColorFilters))
         }
 
         if (Object.keys(selectedCategoryFilters).length) {
             filteredProducts = filteredProducts.filter((product) => product.category.some((category) => category.toLowerCase() in selectedCategoryFilters))
         }
 
-        setProducts(filteredProducts);
-    }, [selectedColorFilters, selectedCategoryFilters, availableItems])
+        setFilteredProducts(filteredProducts);
+    }, [selectedColorFilters, selectedCategoryFilters, products])
 
     function handleFilterByCategory(e, filterValue) {
         if (filterValue.toLowerCase() === 'all categories') {
@@ -124,7 +124,7 @@ function Home() {
 
                 <div className='inner-container'>
                     <div className='product-list'>
-                        {products.map(function (product) {
+                        {filteredProducts.map(function (product) {
                             function handleOnClick() {
                                 history.push(`/product/${product.id}`);
                             }

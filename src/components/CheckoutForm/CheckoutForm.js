@@ -20,25 +20,27 @@ export default function CheckoutForm({ productId, price, onFormInitializationErr
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("https://api.joroze.com/create-payment-intent", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                items: [productId]
-            })
-        })
-            .then(res => {
-                return res.json();
-            })
-            .then(data => {
+        async function postCreatePaymentIntent() {
+            try {
+                const data = await fetch("https://api.joroze.com/create-payment-intent", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        items: [productId]
+                    })
+                }).then(res => res.json());
+
                 setClientSecret(data);
-            })
-            .catch((err) => {
+            } catch (error) {
                 setFormInitializationError(true)
-            })
-    }, [productId]);
+            }
+        }
+
+        postCreatePaymentIntent();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         if (formInitializationError) {

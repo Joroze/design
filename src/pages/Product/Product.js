@@ -10,17 +10,17 @@ import CheckoutForm from 'components/CheckoutForm/CheckoutForm';
 import Modal from 'components/Modal/Modal';
 import ProductItem from '../Home/components/ProductItem/ProductItem'
 
-import { ProductContext } from 'App'
+import { ProductContext } from 'components/ProductContextProvider'
 
 function Product(props) {
-    const { availableItems } = useContext(ProductContext);
+    const { products } = useContext(ProductContext);
     const { id } = useParams();
     const history = useHistory();
     const [open, setOpen] = useState(false)
 
     const toggleOpen = () => setOpen(!open);
 
-    const product = useMemo(() => availableItems.find((product) => product.id === Number(id)), [id, availableItems])
+    const product = useMemo(() => products.find((product) => product.id === Number(id)), [id, products])
 
     if (!product) {
         return <Redirect to='/' />
