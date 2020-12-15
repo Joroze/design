@@ -41,7 +41,7 @@ function Product(props) {
                     detailedImageView
                 />
 
-                {product.price
+                {product.available
                     ? <Button onClick={toggleOpen} borderless>Purchase</Button>
                     : <Button disabled borderless>Unavailable</Button>
                 }
