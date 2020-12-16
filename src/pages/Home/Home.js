@@ -126,6 +126,10 @@ function Home() {
                     <div className='product-list'>
                         {filteredProducts.length
                             ? filteredProducts.map(function (product) {
+                                if (product.hidden) {
+                                    return null;
+                                }
+
                                 function handleOnClick() {
                                     history.push(`/product/${product.id}`);
                                 }
