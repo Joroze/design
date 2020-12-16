@@ -98,7 +98,7 @@ function Home() {
     }
 
     function handleSort(e, value) {
-        console.log(value);
+        // console.log(value);
     }
 
     return (
@@ -124,22 +124,25 @@ function Home() {
 
                 <div className='inner-container'>
                     <div className='product-list'>
-                        {filteredProducts.map(function (product) {
-                            function handleOnClick() {
-                                history.push(`/product/${product.id}`);
-                            }
+                        {filteredProducts.length
+                            ? filteredProducts.map(function (product) {
+                                function handleOnClick() {
+                                    history.push(`/product/${product.id}`);
+                                }
 
-                            return (
-                                <ProductItem
-                                    key={product.id}
-                                    onClick={handleOnClick}
-                                    name={product.name}
-                                    description={product.description}
-                                    price={product.price}
-                                    imgSrc={product.imgSrc}
-                                />
-                            )
-                        })}
+                                return (
+                                    <ProductItem
+                                        key={product.id}
+                                        onClick={handleOnClick}
+                                        name={product.name}
+                                        description={product.description}
+                                        price={product.price}
+                                        imgSrc={product.imgSrc}
+                                    />
+                                )
+                            })
+                            : 'No pieces found.'
+                        }
                     </div>
 
                     <p style={{ textAlign: 'center', fontSize: '9px' }}>~</p>

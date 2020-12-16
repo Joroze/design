@@ -5,7 +5,7 @@ import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useMediaQuery } from 'react-responsive'
-import { faBars, faSearch, faUser, faShoppingBag } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faSlash, faSearch, faUser, faShoppingBag } from '@fortawesome/free-solid-svg-icons'
 
 import playdohImg from 'assets/images/playdoh.jpg'
 import earthImg from 'assets/images/earth.jpg'
@@ -34,8 +34,8 @@ const ID_TO_IMAGE_MAP = {
 
 function App() {
   const [open, setOpen] = useState(false);
+  const [productsLoading, setProductsLoading] = useState(true);
   const history = useHistory();
-
   const { setProducts } = useContext(ProductContext);
 
   useEffect(() => {
@@ -55,6 +55,8 @@ function App() {
       } catch (error) {
         setProducts([])
       }
+
+      setProductsLoading(false);
     }
 
     fetchProducts();
@@ -138,19 +140,22 @@ function App() {
       </header>
 
       <div className='page-container'>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route
-            path="/product/:id"
-          >
-            <Product />
-          </Route>
-          <Route>
-            <Redirect to="/" />
-          </Route>
-        </Switch>
+        {productsLoading
+          ? <FontAwesomeIcon icon={faSlash} pulse />
+          : (
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route path="/product/:id">
+                <Product />
+              </Route>
+              <Route>
+                <Redirect to="/" />
+              </Route>
+            </Switch>
+          )
+        }
       </div>
     </div >
   );
