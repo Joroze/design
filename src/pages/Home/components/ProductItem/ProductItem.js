@@ -5,7 +5,7 @@ import './ProductItem.scss';
 import PropTypes from 'prop-types';
 import InnerImageZoom from 'react-inner-image-zoom';
 
-function ProductItem({ name, description, price, imgSrc, detailedImageView, category, onClick }) {
+function ProductItem({ name, description, price, imgSrc, detailedImageView, category, available, onClick }) {
     return (
         <div className={`component-product-item ${onClick ? 'clickable' : ''}`} onClick={onClick}>
             {detailedImageView ?
@@ -23,7 +23,7 @@ function ProductItem({ name, description, price, imgSrc, detailedImageView, cate
             }
             <p>{name || '???'}</p>
             {description && <p className='description'>{description}</p>}
-            <span>{price ? `$${price}` : ' N/A'}</span>
+            <span>{available ? `$${price}` : 'SOLD OUT'}</span>
         </div>
     );
 }

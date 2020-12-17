@@ -142,6 +142,7 @@ function Home() {
                                         description={product.description}
                                         price={product.price}
                                         imgSrc={product.imgSrc}
+                                        available={product.available}
                                     />
                                 )
                             })}
