@@ -76,6 +76,19 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(function () {
+    if (!searchValue) {
+      setProducts(originalProducts);
+
+      return;
+    }
+
+    const sanitizedSearchValue = searchValue.toLowerCase();
+    const products = originalProducts.filter((product) => product.name.toLowerCase().includes(sanitizedSearchValue));
+
+    setProducts(products);
+  }, [searchValue])
+
   const isDesktopView = useMediaQuery({
     query: '(min-width: 1024px)'
   }, undefined, handleMediaQueryChange)
@@ -94,10 +107,7 @@ function App() {
   }
 
   function handleOnSearchChange(e) {
-    const newSearchValue = e.target.value.toLowerCase();
-    const products = originalProducts.filter((product) => product.name.toLowerCase().includes(newSearchValue));
-    setSearchValue(newSearchValue);
-    setProducts(products);
+    setSearchValue(e.target.value);
   }
 
   function handleOnSearchBlur() {
