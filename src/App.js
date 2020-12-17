@@ -83,7 +83,8 @@ function App() {
   }
 
   function goToHomePage() {
-    history.push('/')
+    setSearchOpen(false);
+    history.push('/');
   }
 
   function handleOnSearchChange(e) {
