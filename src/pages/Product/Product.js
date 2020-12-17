@@ -38,6 +38,7 @@ function Product(props) {
                     description={product.description}
                     price={product.price}
                     imgSrc={product.imgSrc}
+                    available={product.available}
                     detailedImageView
                 />
 
