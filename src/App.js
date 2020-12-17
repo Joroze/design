@@ -34,6 +34,10 @@ const ID_TO_IMAGE_MAP = {
 
 function App() {
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
+  const [originalProducts, setOriginalProducts] = useState([]);
+
   const [productsLoading, setProductsLoading] = useState(true);
   const history = useHistory();
   const { setProducts } = useContext(ProductContext);
@@ -53,6 +57,7 @@ function App() {
             }
           });
 
+        setOriginalProducts(productsWithImages)
         setProducts(productsWithImages);
       } catch (error) {
         setProducts([])
@@ -77,6 +82,17 @@ function App() {
     setOpen(!open);
   }
 
+  function goToHomePage() {
+    history.push('/')
+  }
+
+  function handleOnSearchChange(e) {
+    const newSearchValue = e.target.value.toLowerCase();
+    const products = originalProducts.filter((product) => product.name.toLowerCase().includes(newSearchValue));
+    setSearchValue(newSearchValue);
+    setProducts(products);
+  }
+
   return (
     <div className={`component-app ${open ? 'open' : ''}`}>
       {open &&
@@ -98,13 +114,18 @@ function App() {
               {isDesktopView
                 ? <>
                   <li>
-                    <Button borderless>Products</Button>
+                    <Button onClick={goToHomePage} borderless>Products</Button>
                   </li>
                   <li>
-                    <Button borderless>Sale</Button>
+                    <Button disabled borderless>Sale</Button>
                   </li>
                   <li>
-                    <Button borderless>Search</Button>
+                    <Button onClick={() => setSearchOpen(!searchOpen)} borderless>Search</Button>
+                    {searchOpen &&
+                      <div className='search-menu'>
+                        <input autofocus value={searchValue} onChange={handleOnSearchChange} />
+                      </div>
+                    }
                   </li>
                 </>
                 : <>
@@ -112,7 +133,12 @@ function App() {
                     <span onClick={handleToggleNavDropdownMenu}><FontAwesomeIcon size='lg' icon={faBars} /></span>
                   </li>
                   <li>
-                    <span><FontAwesomeIcon size='lg' icon={faSearch} /></span>
+                    <span onClick={() => setSearchOpen(!searchOpen)}><FontAwesomeIcon size='lg' icon={faSearch} /></span>
+                    {searchOpen &&
+                      <div className='search-menu'>
+                        <input autofocus value={searchValue} onChange={handleOnSearchChange} />
+                      </div>
+                    }
                   </li>
                 </>
               }
@@ -120,7 +146,7 @@ function App() {
           </nav>
 
           <h2 className='title'>
-            <Button borderless onClick={() => history.push('/')}>
+            <Button borderless onClick={goToHomePage}>
               Sculpture
             </Button>
           </h2>
@@ -130,21 +156,21 @@ function App() {
               {isDesktopView
                 ? <>
                   <li>
-                    <Button borderless>Wishlist</Button>
+                    <Button disabled borderless>Wishlist</Button>
                   </li>
                   <li>
-                    <Button borderless>Account</Button>
+                    <Button disabled borderless>Account</Button>
                   </li>
                   <li>
-                    <Button borderless>Shopping Bag (0)</Button>
+                    <Button disabled borderless>Shopping Bag (0)</Button>
                   </li>
                 </>
                 : <>
                   <li>
-                    <span><FontAwesomeIcon size='lg' icon={faUser} /></span>
+                    <span><FontAwesomeIcon color='gray' size='lg' icon={faUser} /></span>
                   </li>
                   <li>
-                    <span><FontAwesomeIcon size='lg' icon={faShoppingBag} /> (0)</span>
+                    <span><FontAwesomeIcon color='gray' size='lg' icon={faShoppingBag} /> (0)</span>
                   </li>
                 </>
               }
