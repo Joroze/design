@@ -63,7 +63,7 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useMediaQuery({
+  const isDesktopView = useMediaQuery({
     query: '(min-width: 1024px)'
   }, undefined, handleMediaQueryChange)
 
@@ -93,21 +93,27 @@ function App() {
         <div>
           <nav>
             <ul>
-              <li className='desktop-visible'>
-                <Button borderless>Products</Button>
-              </li>
-              <li className='desktop-visible'>
-                <Button borderless>Sale</Button>
-              </li>
-              <li className='desktop-visible'>
-                <Button borderless>Search</Button>
-              </li>
-              <li className='mobile-visible'>
-                <span onClick={handleToggleNavDropdownMenu}><FontAwesomeIcon size='lg' icon={faBars} /></span>
-              </li>
-              <li className='mobile-visible'>
-                <span><FontAwesomeIcon size='lg' icon={faSearch} /></span>
-              </li>
+              {isDesktopView
+                ? <>
+                  <li>
+                    <Button borderless>Products</Button>
+                  </li>
+                  <li>
+                    <Button borderless>Sale</Button>
+                  </li>
+                  <li>
+                    <Button borderless>Search</Button>
+                  </li>
+                </>
+                : <>
+                  <li>
+                    <span onClick={handleToggleNavDropdownMenu}><FontAwesomeIcon size='lg' icon={faBars} /></span>
+                  </li>
+                  <li>
+                    <span><FontAwesomeIcon size='lg' icon={faSearch} /></span>
+                  </li>
+                </>
+              }
             </ul>
           </nav>
 
@@ -119,21 +125,27 @@ function App() {
 
           <nav>
             <ul>
-              <li className='desktop-visible'>
-                <Button borderless>Wishlist</Button>
-              </li>
-              <li className='desktop-visible'>
-                <Button borderless>Account</Button>
-              </li>
-              <li className='desktop-visible'>
-                <Button borderless>Shopping Bag (0)</Button>
-              </li>
-              <li className='mobile-visible'>
-                <span><FontAwesomeIcon size='lg' icon={faUser} /></span>
-              </li>
-              <li className='mobile-visible'>
-                <span><FontAwesomeIcon size='lg' icon={faShoppingBag} /> (0)</span>
-              </li>
+              {isDesktopView
+                ? <>
+                  <li>
+                    <Button borderless>Wishlist</Button>
+                  </li>
+                  <li>
+                    <Button borderless>Account</Button>
+                  </li>
+                  <li>
+                    <Button borderless>Shopping Bag (0)</Button>
+                  </li>
+                </>
+                : <>
+                  <li>
+                    <span><FontAwesomeIcon size='lg' icon={faUser} /></span>
+                  </li>
+                  <li>
+                    <span><FontAwesomeIcon size='lg' icon={faShoppingBag} /> (0)</span>
+                  </li>
+                </>
+              }
             </ul>
           </nav>
         </div>

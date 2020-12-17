@@ -26,13 +26,13 @@ code {
     monospace;
 }
 
-/* Large devices (laptops/desktops, 1024px and down) */
+/* Large devices (laptops/desktops, 1024px and up) */
 @media only screen and (max-width: 1024px) {
     .desktop-visible {
         display: none;
     }
 }
-/* Large devices (laptops/desktops, 1024px and down) */
+/* Mobile devices (mobile devices, 1024px and down) */
 @media only screen and (min-width: 1024px) {
   .mobile-visible {
       display: none;

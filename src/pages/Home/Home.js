@@ -123,9 +123,9 @@ function Home() {
                 </div>
 
                 <div className='inner-container'>
-                    <div className='product-list'>
-                        {filteredProducts.length
-                            ? filteredProducts.map(function (product) {
+                    {filteredProducts.length
+                        ? <div className='product-list'>
+                            {filteredProducts.map(function (product) {
                                 if (product.hidden) {
                                     return null;
                                 }
@@ -144,10 +144,10 @@ function Home() {
                                         imgSrc={product.imgSrc}
                                     />
                                 )
-                            })
-                            : 'No pieces found.'
-                        }
-                    </div>
+                            })}
+                        </div>
+                        : 'No pieces found.'
+                    }
 
                     <p style={{ textAlign: 'center', fontSize: '9px' }}>~</p>
                     <p style={{ textAlign: 'center' }}>Collection</p>
