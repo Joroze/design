@@ -7,6 +7,11 @@
         font-size: 10px;
         outline: black;
         text-transform: uppercase;
+        border-radius: 0;
         border: 1px solid black;
+    }
+      
+    input[type="search"] {
+        -webkit-appearance: none;
     }
 }
