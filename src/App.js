@@ -23,6 +23,7 @@ import cubeImg2 from 'assets/images/cube2.jpg'
 import Home from 'pages/Home/Home';
 import Product from 'pages/Product/Product';
 import Button from 'components/Button/Button';
+import SearchBar from 'components/SearchBar/SearchBar';
 
 import { ProductContext } from 'components/ProductContextProvider'
 
@@ -45,7 +46,7 @@ function App() {
 
   const [productsLoading, setProductsLoading] = useState(true);
   const history = useHistory();
-  const { setProducts } = useContext(ProductContext);
+  const { products: filteredProducts, setProducts } = useContext(ProductContext);
 
   useEffect(() => {
     // Fetch products as soon as the page loads
@@ -99,6 +100,10 @@ function App() {
     setProducts(products);
   }
 
+  function handleOnSearchBlur() {
+    setSearchOpen(false);
+  }
+
   return (
     <div className={`component-app ${open ? 'open' : ''}`}>
       {open &&
@@ -128,9 +133,14 @@ function App() {
                   <li>
                     <Button onClick={() => setSearchOpen(!searchOpen)} borderless>Search</Button>
                     {searchOpen &&
-                      <div className='search-menu'>
-                        <input autofocus value={searchValue} onChange={handleOnSearchChange} />
-                      </div>
+                      <SearchBar
+                        onBlur={handleOnSearchBlur}
+                        autoFocus={true}
+                        value={searchValue}
+                        onChange={handleOnSearchChange}
+                      >
+                        {searchValue && `${filteredProducts.length} results`}
+                      </SearchBar>
                     }
                   </li>
                 </>
@@ -141,9 +151,14 @@ function App() {
                   <li>
                     <span onClick={() => setSearchOpen(!searchOpen)}><FontAwesomeIcon size='lg' icon={faSearch} /></span>
                     {searchOpen &&
-                      <div className='search-menu'>
-                        <input autofocus value={searchValue} onChange={handleOnSearchChange} />
-                      </div>
+                      <SearchBar
+                        onBlur={handleOnSearchBlur}
+                        autoFocus={true}
+                        value={searchValue}
+                        onChange={handleOnSearchChange}
+                      >
+                        {searchValue && `${filteredProducts.length} results`}
+                      </SearchBar>
                     }
                   </li>
                 </>
