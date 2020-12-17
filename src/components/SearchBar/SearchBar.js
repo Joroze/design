@@ -6,6 +6,7 @@ function SearchBar(props) {
         onChange,
         autoFocus,
         onBlur,
+        placeholder,
         children
     } = props;
 
@@ -13,6 +14,7 @@ function SearchBar(props) {
         <div className='component-search-bar'>
             <input
                 onBlur={onBlur}
+                placeholder={placeholder || 'Search'}
                 autoFocus={autoFocus}
                 value={value}
                 onChange={onChange}
