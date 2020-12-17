@@ -17,8 +17,8 @@ import burgerImg from 'assets/images/burger.jpg'
 import burgerImg2 from 'assets/images/burger2.jpg'
 import slimeImg from 'assets/images/slime.jpg'
 import slimeImg2 from 'assets/images/slime2.jpg'
-import cubeImg from 'assets/images/cubeImg.jpg'
-import cubeImg2 from 'assets/images/cubeImg2.jpg'
+import cubeImg from 'assets/images/cube.jpg'
+import cubeImg2 from 'assets/images/cube2.jpg'
 
 import Home from 'pages/Home/Home';
 import Product from 'pages/Product/Product';
