@@ -13,7 +13,7 @@ function SearchBar(props) {
     return (
         <div className='component-search-bar'>
             <input
-                // onBlur={onBlur}
+                onBlur={onBlur}
                 placeholder={placeholder || 'Search'}
                 autoFocus={autoFocus}
                 value={value}
