@@ -32,7 +32,7 @@ const ID_TO_IMAGE_MAP = {
   3: [earthImg],
   4: [snowmanImg, snowmanImg2],
   5: [patrickImg],
-  6: [slimeImg, slimeImg2]
+  6: [slimeImg, slimeImg2],
   7: [playdohImg], // example
   8: [cubeImg, cubeImg2]
 }
