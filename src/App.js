@@ -44,12 +44,14 @@ function App() {
       try {
         const products = await fetch("https://api.joroze.com/products").then(res => res.json());
 
-        const productsWithImages = products.map(function (product) {
-          return {
-            ...product,
-            imgSrc: ID_TO_IMAGE_MAP[product.id]
-          }
-        });
+        const productsWithImages = products
+          .sort(((a, b) => a.id - b.id))
+          .map(function (product) {
+            return {
+              ...product,
+              imgSrc: ID_TO_IMAGE_MAP[product.id]
+            }
+          });
 
         setProducts(productsWithImages);
       } catch (error) {
