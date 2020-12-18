@@ -1,11 +1,10 @@
 import './Button.scss';
 
-function Button({ content, onClick, borderless, children, disabled }) {
+function Button({ content, borderless, children, ...rest }) {
     return (
         <button
             className={`component-button ${borderless ? 'borderless' : ''}`}
-            onClick={onClick}
-            disabled={disabled}
+            {...rest}
         >
             {children || content}
         </button>

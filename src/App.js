@@ -1,7 +1,7 @@
 import './App.scss';
 
 import React, { useState, useEffect, useContext } from 'react'
-import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
+import { Switch, Route, Redirect, useHistory, useRouteMatch } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useMediaQuery } from 'react-responsive'
@@ -48,6 +48,11 @@ function App() {
   const history = useHistory();
   const { products: filteredProducts, setProducts } = useContext(ProductContext);
 
+  const { isExact: isHomePage } = useRouteMatch({
+    path: "/",
+    strict: true
+  });
+
   useEffect(() => {
     // Fetch products as soon as the page loads
     async function fetchProducts() {
@@ -87,7 +92,7 @@ function App() {
     const products = originalProducts.filter((product) => product.name.toLowerCase().includes(sanitizedSearchValue));
 
     setProducts(products);
-  }, [searchValue])
+  }, [originalProducts, setProducts, searchValue])
 
   const isDesktopView = useMediaQuery({
     query: '(min-width: 1024px)'
@@ -103,6 +108,7 @@ function App() {
 
   function goToHomePage() {
     setSearchOpen(false);
+    setSearchValue('');
     history.push('/');
   }
 
@@ -110,7 +116,15 @@ function App() {
     setSearchValue(e.target.value);
   }
 
-  function handleOnSearchBlur() {
+  function handleSearchOnMouseDown(e) {
+    e.preventDefault();
+  }
+
+  function handleSearchClick(e) {
+    setSearchOpen(!searchOpen)
+  }
+
+  function handleOnSearchBlur(e) {
     setSearchOpen(false);
   }
 
@@ -135,42 +149,46 @@ function App() {
               {isDesktopView
                 ? <>
                   <li>
-                    <Button onClick={goToHomePage} borderless>Products</Button>
+                    <Button onClick={goToHomePage} disabled={searchOpen} borderless>Products</Button>
                   </li>
                   <li>
-                    <Button disabled borderless>Sale</Button>
+                    <Button disabled={true || searchOpen} borderless>Sale</Button>
                   </li>
-                  <li>
-                    <Button onClick={() => setSearchOpen(!searchOpen)} borderless>Search</Button>
-                    {searchOpen &&
-                      <SearchBar
-                        onBlur={handleOnSearchBlur}
-                        autoFocus={true}
-                        value={searchValue}
-                        onChange={handleOnSearchChange}
-                      >
-                        {searchValue && `${filteredProducts.length} results`}
-                      </SearchBar>
-                    }
-                  </li>
+                  {isHomePage &&
+                    <li>
+                      <Button onClick={handleSearchClick} onMouseDown={handleSearchOnMouseDown} borderless>Search</Button>
+                      {searchOpen &&
+                        <SearchBar
+                          onBlur={handleOnSearchBlur}
+                          autoFocus={true}
+                          value={searchValue}
+                          onChange={handleOnSearchChange}
+                        >
+                          {searchValue && `${filteredProducts.length} results`}
+                        </SearchBar>
+                      }
+                    </li>
+                  }
                 </>
                 : <>
                   <li>
                     <span onClick={handleToggleNavDropdownMenu}><FontAwesomeIcon size='lg' icon={faBars} /></span>
                   </li>
-                  <li>
-                    <span onClick={() => setSearchOpen(!searchOpen)}><FontAwesomeIcon size='lg' icon={faSearch} /></span>
-                    {searchOpen &&
-                      <SearchBar
-                        onBlur={handleOnSearchBlur}
-                        autoFocus={true}
-                        value={searchValue}
-                        onChange={handleOnSearchChange}
-                      >
-                        {searchValue && `${filteredProducts.length} results`}
-                      </SearchBar>
-                    }
-                  </li>
+                  {isHomePage &&
+                    <li>
+                      <span onClick={handleSearchClick} onMouseDown={handleSearchOnMouseDown}><FontAwesomeIcon size='lg' icon={faSearch} /></span>
+                      {searchOpen &&
+                        <SearchBar
+                          onBlur={handleOnSearchBlur}
+                          autoFocus={true}
+                          value={searchValue}
+                          onChange={handleOnSearchChange}
+                        >
+                          {searchValue && `${filteredProducts.length} results`}
+                        </SearchBar>
+                      }
+                    </li>
+                  }
                 </>
               }
             </ul>
