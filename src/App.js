@@ -39,7 +39,7 @@ const ID_TO_IMAGE_MAP = {
 }
 
 function App() {
-  const [open, setOpen] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const [products, setProducts] = useState([]);
@@ -104,15 +104,16 @@ function App() {
   }, undefined, handleMediaQueryChange)
 
   function handleMediaQueryChange() {
-    setOpen(false);
+    setNavOpen(false);
   }
 
-  function handleToggleNavDropdownMenu() {
-    setOpen(!open);
+  function handleToggleNavDropdownMenu(e) {
+    setNavOpen(!navOpen);
   }
 
   function goToHomePage() {
     setSearchOpen(false);
+    setNavOpen(false);
     setSearchValue('');
     history.push('/');
   }
@@ -126,7 +127,8 @@ function App() {
   }
 
   function handleSearchClick(e) {
-    setSearchOpen(!searchOpen)
+    setSearchOpen(!searchOpen);
+    setNavOpen(false);
   }
 
   function handleOnSearchBlur(e) {
@@ -134,8 +136,8 @@ function App() {
   }
 
   return (
-    <div className={`component-app ${open ? 'open' : ''}`}>
-      { open &&
+    <div className={`component-app ${navOpen ? 'open' : ''}`}>
+      { navOpen &&
         <div className='app-nav-dropdown'>
           <ul>
             <li>Account</li>
@@ -177,11 +179,11 @@ function App() {
                 </>
                 : <>
                   <li>
-                    <span onClick={handleToggleNavDropdownMenu}><FontAwesomeIcon size='lg' icon={faBars} /></span>
+                    <Button inactive={searchOpen} onClick={handleToggleNavDropdownMenu} icon={<FontAwesomeIcon size='lg' icon={faBars} />} />
                   </li>
                   {isHomePage &&
                     <li>
-                      <span onClick={handleSearchClick} onMouseDown={handleSearchOnMouseDown}><FontAwesomeIcon size='lg' icon={faSearch} /></span>
+                      <Button onClick={handleSearchClick} onMouseDown={handleSearchOnMouseDown} icon={<FontAwesomeIcon size='lg' icon={faSearch} />} />
                       {searchOpen &&
                         <SearchBar
                           onBlur={handleOnSearchBlur}
@@ -221,10 +223,10 @@ function App() {
                 </>
                 : <>
                   <li>
-                    <span><FontAwesomeIcon color='gray' size='lg' icon={faUser} /></span>
+                    <Button disabled icon={<FontAwesomeIcon size='lg' icon={faUser} />} />
                   </li>
                   <li>
-                    <span><FontAwesomeIcon color='gray' size='lg' icon={faShoppingBag} /> (0)</span>
+                    <Button disabled icon={<FontAwesomeIcon size='lg' icon={faShoppingBag} />}>(0)</Button>
                   </li>
                 </>
               }

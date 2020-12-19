@@ -56,6 +56,11 @@ function Home({ children }) {
     const history = useHistory();
 
     useEffect(function () {
+        setSelectedCategoryFilters({});
+        setSelectedColorFilters({});
+    }, [products])
+
+    useEffect(function () {
         let filteredProducts = products;
 
         if (Object.keys(selectedColorFilters).length) {
@@ -67,7 +72,8 @@ function Home({ children }) {
         }
 
         setFilteredProducts(filteredProducts);
-    }, [selectedColorFilters, selectedCategoryFilters, products])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedColorFilters, selectedCategoryFilters])
 
     function handleFilterByCategory(e, filterValue) {
         if (filterValue.toLowerCase() === 'all categories') {

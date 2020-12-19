@@ -1,13 +1,13 @@
 import './Button.scss';
 
-function Button({ content, borderless, inactive, children, onClick, ...rest }) {
+function Button({ content, borderless, inactive, children, onClick, icon, ...rest }) {
     return (
         <button
-            className={`component-button${borderless ? ' borderless' : ''}${inactive ? ' inactive' : ''}`}
+            className={`component-button${borderless || icon ? ' borderless' : ''}${inactive ? ' inactive' : ''}`}
             onClick={inactive ? null : onClick}
             {...rest}
         >
-            {children || content}
+            {icon} {children || content}
         </button>
     );
 }
