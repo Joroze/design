@@ -1,9 +1,10 @@
 import './Button.scss';
 
-function Button({ content, borderless, children, ...rest }) {
+function Button({ content, borderless, inactive, children, onClick, ...rest }) {
     return (
         <button
-            className={`component-button ${borderless ? 'borderless' : ''}`}
+            className={`component-button${borderless ? ' borderless' : ''}${inactive ? ' inactive' : ''}`}
+            onClick={inactive ? null : onClick}
             {...rest}
         >
             {children || content}

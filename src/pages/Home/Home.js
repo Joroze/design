@@ -46,7 +46,7 @@ const sortMenuHeader = {
     clickable: false
 }
 
-function Home() {
+function Home({ children }) {
     const { products } = useContext(ProductContext);
 
     const [filteredProducts, setFilteredProducts] = useState(products);
@@ -123,32 +123,36 @@ function Home() {
                 </div>
 
                 <div className='inner-container'>
-                    {filteredProducts.length
-                        ? <div className='product-list'>
-                            {filteredProducts.map(function (product) {
-                                if (product.hidden) {
-                                    return null;
-                                }
+                    {children}
 
-                                function handleOnClick() {
-                                    history.push(`/product/${product.id}`);
-                                }
+                    <div className='product-list-container'>
+                        {filteredProducts.length
+                            ? <div className='product-list'>
+                                {filteredProducts.map(function (product) {
+                                    if (product.hidden) {
+                                        return null;
+                                    }
 
-                                return (
-                                    <ProductItem
-                                        key={product.id}
-                                        onClick={handleOnClick}
-                                        name={product.name}
-                                        description={product.description}
-                                        price={product.price}
-                                        imgSrc={product.imgSrc}
-                                        available={product.available}
-                                    />
-                                )
-                            })}
-                        </div>
-                        : 'No pieces found.'
-                    }
+                                    function handleOnClick() {
+                                        history.push(`/product/${product.id}`);
+                                    }
+
+                                    return (
+                                        <ProductItem
+                                            key={product.id}
+                                            onClick={handleOnClick}
+                                            name={product.name}
+                                            description={product.description}
+                                            price={product.price}
+                                            imgSrc={product.imgSrc}
+                                            available={product.available}
+                                        />
+                                    )
+                                })}
+                            </div>
+                            : <p>No pieces found.</p>
+                        }
+                    </div>
 
                     <p style={{ textAlign: 'center', fontSize: '9px' }}>~</p>
                     <p style={{ textAlign: 'center' }}>Collection</p>

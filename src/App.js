@@ -42,22 +42,27 @@ function App() {
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
-  const [originalProducts, setOriginalProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
   const [productsLoading, setProductsLoading] = useState(true);
   const history = useHistory();
-  const { products: filteredProducts, setProducts } = useContext(ProductContext);
+  const { products: filteredProducts, setProducts: setFilteredProducts } = useContext(ProductContext);
 
   const { isExact: isHomePage } = useRouteMatch({
     path: "/",
     strict: true
   });
 
+  const isDevelopmentMode = process.env.NODE_ENV === 'development';
+  const mockedProductData = [{ "available": false, "category": [], "price": 0, "description": "", "id": 7, "name": "Example", "color": [] }, { "available": true, "category": [], "price": 5, "description": "Pretty neat, huh?", "id": 8, "name": "Cube", "color": ["black"], "hidden": false }, { "available": true, "category": ["space"], "price": 5, "description": "", "id": 3, "name": "Earth", "color": ["blue", "green", "white"] }, { "available": false, "descripton": "", "category": ["space"], "price": 10, "id": 2, "name": "Sun", "color": ["red", "orange"] }, { "available": true, "category": ["space"], "price": 5, "description": "", "id": 4, "name": "Snowman", "color": ["white"] }, { "available": true, "category": [], "price": 5, "description": "", "id": 6, "name": "Slime", "color": ["purple"], "hidden": false }, { "available": true, "descripton": "", "category": ["food"], "id": 1, "price": 5, "name": "Burger", "color": ["orange"] }, { "available": true, "category": ["tv"], "price": 5, "description": "The best character in Bikini Bottom", "id": 5, "name": "Patrick", "color": ["pink", "green", "purple", "red"] }];
+
   useEffect(() => {
     // Fetch products as soon as the page loads
     async function fetchProducts() {
       try {
-        const products = await fetch("https://api.joroze.com/products").then(res => res.json());
+        const products = isDevelopmentMode
+          ? mockedProductData
+          : await fetch("https://api.joroze.com/products").then(res => res.json());
 
         const productsWithImages = products
           .sort(((a, b) => a.id - b.id))
@@ -68,10 +73,10 @@ function App() {
             }
           });
 
-        setOriginalProducts(productsWithImages)
-        setProducts(productsWithImages);
+        setProducts(productsWithImages)
+        setFilteredProducts(productsWithImages);
       } catch (error) {
-        setProducts([])
+        setFilteredProducts([])
       }
 
       setProductsLoading(false);
@@ -83,16 +88,16 @@ function App() {
 
   useEffect(function () {
     if (!searchValue) {
-      setProducts(originalProducts);
+      setFilteredProducts(products);
 
       return;
     }
 
     const sanitizedSearchValue = searchValue.toLowerCase();
-    const products = originalProducts.filter((product) => product.name.toLowerCase().includes(sanitizedSearchValue));
+    const newFilteredProducts = products.filter((product) => product.name.toLowerCase().includes(sanitizedSearchValue));
 
-    setProducts(products);
-  }, [originalProducts, setProducts, searchValue])
+    setFilteredProducts(newFilteredProducts);
+  }, [products, setFilteredProducts, searchValue])
 
   const isDesktopView = useMediaQuery({
     query: '(min-width: 1024px)'
@@ -130,7 +135,7 @@ function App() {
 
   return (
     <div className={`component-app ${open ? 'open' : ''}`}>
-      {open &&
+      { open &&
         <div className='app-nav-dropdown'>
           <ul>
             <li>Account</li>
@@ -149,10 +154,10 @@ function App() {
               {isDesktopView
                 ? <>
                   <li>
-                    <Button onClick={goToHomePage} disabled={searchOpen} borderless>Products</Button>
+                    <Button onClick={goToHomePage} inactive={searchOpen} borderless>Products</Button>
                   </li>
                   <li>
-                    <Button disabled={true || searchOpen} borderless>Sale</Button>
+                    <Button disabled inactive={searchOpen} borderless>Sale</Button>
                   </li>
                   {isHomePage &&
                     <li>
@@ -234,7 +239,9 @@ function App() {
           : (
             <Switch>
               <Route exact path="/">
-                <Home />
+                <Home>
+                  {searchValue && <p className='search-criteria'>Search: "{searchValue}"</p>}
+                </Home>
               </Route>
               <Route path="/product/:id">
                 <Product />

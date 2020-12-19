@@ -7,20 +7,30 @@ li {
 .component-button {
     &:disabled {
         cursor: not-allowed;
+        color: #0000004d;
     }
 
     &.borderless {
         &:disabled {
             background-color: #eaeaea;
             cursor: not-allowed;
+
+            &.inactive {
+                cursor: default;
+            }
         }
 
-        &:disabled:hover {
-            text-decoration: none;
+        &.inactive{
+            cursor: default;
+            color: #0000004d;
         }
 
         &:hover {
             text-decoration: underline;
+
+            &:disabled, &.inactive {
+                text-decoration: none;
+            }
         }
 
         background: none;

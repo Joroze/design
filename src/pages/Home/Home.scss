@@ -10,6 +10,7 @@
         padding: 25px;
 
         .inner-container {
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -17,16 +18,20 @@
             margin-left: 25px;
             margin-right: 25px;
 
-            .product-list {
-                width: 100%;
-                display: grid;
-                grid-template-columns: repeat(4, 150px);
-                gap: 30px;
-                justify-content: center;
+            .product-list-container {
+                margin-top: 40px;
 
-                /* Mobile devices */
-                @media only screen and (max-width: 768px) {
-                    grid-template-columns: repeat(auto-fit, 150px);
+                .product-list {
+                    width: 100%;
+                    display: grid;
+                    grid-template-columns: repeat(4, 150px);
+                    gap: 30px;
+                    justify-content: center;
+    
+                    /* Mobile devices */
+                    @media only screen and (max-width: 768px) {
+                        grid-template-columns: repeat(auto-fit, 150px);
+                    }
                 }
             }
         }
