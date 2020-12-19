@@ -208,7 +208,7 @@ function App() {
           </h2>
 
           <nav>
-            <ul>
+            <ul className='right'>
               {isDesktopView
                 ? <>
                   <li>
