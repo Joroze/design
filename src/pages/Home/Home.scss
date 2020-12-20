@@ -20,6 +20,9 @@
 
             .product-list-container {
                 margin-top: 40px;
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
 
                 .product-list {
                     width: 100%;
