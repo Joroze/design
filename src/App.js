@@ -19,6 +19,10 @@ import slimeImg from 'assets/images/slime.jpg'
 import slimeImg2 from 'assets/images/slime2.jpg'
 import cubeImg from 'assets/images/cube.jpg'
 import cubeImg2 from 'assets/images/cube2.jpg'
+import snakeImg from 'assets/images/snake.jpg'
+import snakeImg2 from 'assets/images/snake2.jpg'
+import snakeImg3 from 'assets/images/snake3.jpg'
+import friendImg from 'assets/images/friend.jpg'
 
 import Home from 'pages/Home/Home';
 import Product from 'pages/Product/Product';
@@ -35,7 +39,9 @@ const ID_TO_IMAGE_MAP = {
   5: [patrickImg],
   6: [slimeImg, slimeImg2],
   7: [playdohImg], // example
-  8: [cubeImg, cubeImg2]
+  8: [cubeImg, cubeImg2],
+  9: [snakeImg, snakeImg2, snakeImg3],
+  10: [friendImg]
 }
 
 function App() {
