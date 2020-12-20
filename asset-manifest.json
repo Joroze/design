@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.01a4682f.chunk.css",
-    "main.js": "/static/js/main.eb7f5e5a.chunk.js",
-    "main.js.map": "/static/js/main.eb7f5e5a.chunk.js.map",
+    "main.js": "/static/js/main.de3b24b5.chunk.js",
+    "main.js.map": "/static/js/main.de3b24b5.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.b06d6a79.js",
     "runtime-main.js.map": "/static/js/runtime-main.b06d6a79.js.map",
     "static/css/2.463db0ad.chunk.css": "/static/css/2.463db0ad.chunk.css",
@@ -19,10 +19,14 @@
     "static/media/cube.f4d39858.jpg": "/static/media/cube.f4d39858.jpg",
     "static/media/cube2.9072e4cf.jpg": "/static/media/cube2.9072e4cf.jpg",
     "static/media/earth.76f1dd72.jpg": "/static/media/earth.76f1dd72.jpg",
+    "static/media/friend.b8ae13f4.jpg": "/static/media/friend.b8ae13f4.jpg",
     "static/media/patrick.bb5f3b8d.jpg": "/static/media/patrick.bb5f3b8d.jpg",
     "static/media/playdoh.62e2629f.jpg": "/static/media/playdoh.62e2629f.jpg",
     "static/media/slime.1dc188b5.jpg": "/static/media/slime.1dc188b5.jpg",
     "static/media/slime2.9d3aaf03.jpg": "/static/media/slime2.9d3aaf03.jpg",
+    "static/media/snake.83f3188b.jpg": "/static/media/snake.83f3188b.jpg",
+    "static/media/snake2.42e6710a.jpg": "/static/media/snake2.42e6710a.jpg",
+    "static/media/snake3.ffe9adf1.jpg": "/static/media/snake3.ffe9adf1.jpg",
     "static/media/snowman.53fbd791.jpg": "/static/media/snowman.53fbd791.jpg",
     "static/media/snowman2.5f6fca64.jpg": "/static/media/snowman2.5f6fca64.jpg",
     "static/media/sun.b4d6b4a6.jpg": "/static/media/sun.b4d6b4a6.jpg"
@@ -32,6 +36,6 @@
     "static/css/2.463db0ad.chunk.css",
     "static/js/2.e0909c08.chunk.js",
     "static/css/main.01a4682f.chunk.css",
-    "static/js/main.eb7f5e5a.chunk.js"
+    "static/js/main.de3b24b5.chunk.js"
   ]
 }
