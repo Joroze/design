@@ -4,7 +4,6 @@ import './Product.scss';
 import { useMemo, useContext, useState } from 'react';
 import { Redirect, useHistory, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import MetaTags from 'react-meta-tags';
 
 import Button from 'components/Button/Button';
 import CheckoutForm from 'components/CheckoutForm/CheckoutForm';
@@ -29,13 +28,6 @@ function Product(props) {
 
     return (
         <div className='component-product-page'>
-            <MetaTags>
-                <title>Page 1</title>
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content={window.location.href} />
-                <meta property="og:title" content="SCULPTURE" />
-                <meta property="og:image" content={product.imgSrc[0]} />
-            </MetaTags>
             <div className='product-page-container'>
                 <Button onClick={() => history.push('/')} borderless>
                     {'< Previous'}
