@@ -1,13 +1,19 @@
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
-
 import './ProductItem.scss';
+
+import { useState } from 'react';
 
 import PropTypes from 'prop-types';
 import InnerImageZoom from 'react-inner-image-zoom';
 
 function ProductItem({ name, description, price, imgSrc, detailedImageView, category, available, onClick }) {
+    const [imageLoaded, setImageLoaded] = useState(detailedImageView);
+
     return (
-        <div className={`component-product-item ${onClick ? 'clickable' : ''}`} onClick={onClick}>
+        <div
+            className={`component-product-item${imageLoaded ? ' fade-in' : ''}${onClick ? ' clickable' : ''}`}
+            onClick={onClick}
+        >
             {detailedImageView ?
                 imgSrc.map(function (img, index) {
                     return (
@@ -19,7 +25,7 @@ function ProductItem({ name, description, price, imgSrc, detailedImageView, cate
                         />
                     )
                 })
-                : <img src={imgSrc[0]} alt={name} />
+                : <img src={imgSrc[0]} alt={name} onLoad={() => setImageLoaded(true)} />
             }
             <p>{name || '???'}</p>
             {description && <p className='description'>{description}</p>}

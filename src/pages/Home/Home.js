@@ -132,8 +132,8 @@ function Home({ children }) {
                     {children}
 
                     <div className='product-list-container'>
-                        {filteredProducts.length
-                            ? <div className='product-list'>
+                        {filteredProducts.length >= 0 &&
+                            <div className='product-list'>
                                 {filteredProducts.map(function (product) {
                                     if (product.hidden) {
                                         return null;
@@ -156,8 +156,9 @@ function Home({ children }) {
                                     )
                                 })}
                             </div>
-                            : <p>No pieces found.</p>
                         }
+
+                        {filteredProducts.length <= 0 && <p>No pieces found.</p>}
                     </div>
 
                     <p style={{ textAlign: 'center', fontSize: '9px' }}>~</p>

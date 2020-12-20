@@ -60,9 +60,9 @@ function App() {
     // Fetch products as soon as the page loads
     async function fetchProducts() {
       try {
-        const products = isDevelopmentMode
+        const products = await isDevelopmentMode
           ? mockedProductData
-          : await fetch("https://api.joroze.com/products").then(res => res.json());
+          : fetch("https://api.joroze.com/products").then(res => res.json());
 
         const productsWithImages = products
           .sort(((a, b) => a.id - b.id))
