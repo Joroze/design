@@ -22,7 +22,7 @@ function Product(props) {
 
     const product = useMemo(() => products.find((product) => product.id === Number(id)), [id, products])
 
-    if (!product) {
+    if (!product || product.hidden) {
         return <Redirect to='/' />
     }
 
